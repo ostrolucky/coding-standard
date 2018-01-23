@@ -1,0 +1,155 @@
+includes:
+    - vendor/symplify/easy-coding-standard/config/symfony.neon
+    - vendor/symplify/easy-coding-standard/config/symfony-risky.neon
+
+parameters:
+    exclude_checkers:
+        # Skipped symfony.neon rules
+        - PhpCsFixer\Fixer\Phpdoc\PhpdocAlignFixer # harder looking diffs
+        - PhpCsFixer\Fixer\Phpdoc\PhpdocSummaryFixer # I don't want summary being forced upon me. Sometime there is no need for it, I just want to explain what are the options for.
+        - PhpCsFixer\Fixer\ClassNotation\MethodSeparationFixer # -> ClassAttributesSeparationFixer
+        - PhpCsFixer\Fixer\Whitespace\NoExtraConsecutiveBlankLinesFixer # -> NoExtraBlankLinesFixer
+        - PhpCsFixer\Fixer\Alias\NoMixedEchoPrintFixer # -> ForbiddenFunctionsSniff
+        - PhpCsFixer\Fixer\ControlStructure\NoTrailingCommaInListCallFixer # -> ListSyntaxFixer
+        - PhpCsFixer\Fixer\Phpdoc\PhpdocNoAccessFixer # -> TypeHintDeclarationSniff.UselessDocComment
+        - PhpCsFixer\Fixer\Phpdoc\PhpdocNoEmptyReturnFixer # -> TypeHintDeclarationSniff.UselessReturnAnnotation
+        - PhpCsFixer\Fixer\Phpdoc\PhpdocNoPackageFixer # -> TypeHintDeclarationSniff.UselessDocComment
+        - PhpCsFixer\Fixer\FunctionNotation\ReturnTypeDeclarationFixer # -> TypeHintDeclarationSniff.MissingReturnTypeHint
+        # Skipped symfony-risky.neon rules
+        - PhpCsFixer\Fixer\Alias\EregToPregFixer # -> Don't need to worry about this in PHP 7
+        - PhpCsFixer\Fixer\Alias\NoAliasFunctionsFixer # -> ForbiddenFunctionsSniff
+    skip:
+        PhpCsFixer\Fixer\Operator\BinaryOperatorSpacesFixer: # in tests array alignment might be very useful in dataproviders
+            - *tests/*.php
+
+checkers:
+    # code logic improvements / easy symplifications
+    - PhpCsFixer\Fixer\LanguageConstruct\CombineConsecutiveIssetsFixer
+    - PhpCsFixer\Fixer\ControlStructure\NoSuperfluousElseifFixer
+    - PhpCsFixer\Fixer\FunctionNotation\NoUnreachableDefaultArgumentValueFixer
+    - PhpCsFixer\Fixer\Operator\TernaryToNullCoalescingFixer
+    - PHP_CodeSniffer\Standards\Generic\Sniffs\CodeAnalysis\ForLoopShouldBeWhileLoopSniff
+    - PHP_CodeSniffer\Standards\Generic\Sniffs\CodeAnalysis\ForLoopWithTestFunctionCallSniff
+    PHP_CodeSniffer\Standards\Generic\Sniffs\Strings\UnnecessaryStringConcatSniff:
+        allowMultiline: true
+    - PHP_CodeSniffer\Standards\Squiz\Sniffs\Classes\SelfMemberReferenceSniff
+    - PHP_CodeSniffer\Standards\Squiz\Sniffs\Operators\IncrementDecrementUsageSniff
+    - Symplify\CodingStandard\Fixer\Php\ClassStringToClassConstantFixer
+    - SlevomatCodingStandard\Sniffs\Exceptions\ReferenceThrowableOnlySniff
+    PhpCsFixer\Fixer\ControlStructure\YodaStyleFixer:
+        equal: false
+        identical: false
+        less_and_greater: false
+
+    # dead code detection
+    - PhpCsFixer\Fixer\ClassNotation\NoNullPropertyInitializationFixer
+    SlevomatCodingStandard\Sniffs\Namespaces\UnusedUsesSniff:
+        searchAnnotations: true
+    - SlevomatCodingStandard\Sniffs\Classes\UnusedPrivateElementsSniff
+    - SlevomatCodingStandard\Sniffs\Exceptions\DeadCatchSniff
+    - SlevomatCodingStandard\Sniffs\Namespaces\UseFromSameNamespaceSniff
+
+    # inconsistency fixes
+    - SlevomatCodingStandard\Sniffs\TypeHints\LongTypeHintsSniff
+    - SlevomatCodingStandard\Sniffs\Namespaces\UseDoesNotStartWithBackslashSniff
+    - Symplify\CodingStandard\Sniffs\Naming\InterfaceNameSniff
+    - Symplify\CodingStandard\Sniffs\Naming\TraitNameSniff
+    - PhpCsFixer\Fixer\Import\OrderedImportsFixer
+    - PhpCsFixer\Fixer\Strict\DeclareStrictTypesFixer
+    - PhpCsFixer\Fixer\Strict\StrictComparisonFixer
+    PHP_CodeSniffer\Standards\Generic\Sniffs\PHP\ForbiddenFunctionsSniff:
+        forbiddenFunctions:
+            chop: rtrim
+            close: closedir
+            delete: unset
+            doubleval: floatval
+            fputs: fwrite
+            imap_create: createmailbox
+            imap_fetchtext: body
+            imap_header: headerinfo
+            imap_listmailbox: list
+            imap_listsubscribed: lsub
+            imap_rename: renamemailbox
+            imap_scan: listscan
+            imap_scanmailbox: listscan
+            mt_rand: random_int
+            ini_alter: set
+            is_double: float
+            is_integer: int
+            is_long: int
+            is_real: float
+            is_writeable: writable
+            join: implode
+            key_exists: exists
+            magic_quotes_runtime: set_magic_quotes_runtime
+            pos: current
+            print: echo
+            rand: random_int
+            show_source: file
+            sizeof: count
+            strchr: strstr
+    PhpCsFixer\Fixer\ArrayNotation\ArraySyntaxFixer:
+        syntax: short
+    PhpCsFixer\Fixer\ListNotation\ListSyntaxFixer:
+        syntax: short
+
+    # complexity / hard to read code
+    PHP_CodeSniffer\Standards\Generic\Sniffs\Metrics\CyclomaticComplexitySniff:
+        absoluteComplexity: 10
+    PHP_CodeSniffer\Standards\Generic\Sniffs\Files\LineLengthSniff:
+        absoluteLineLimit: 120
+    PHP_CodeSniffer\Standards\Generic\Sniffs\Metrics\NestingLevelSniff:
+        absoluteNestingLevel: 4
+
+    # whitespaces
+    - PhpCsFixer\Fixer\Whitespace\CompactNullableTypehintFixer
+    - PHP_CodeSniffer\Standards\PEAR\Sniffs\ControlStructures\MultiLineConditionSniff
+    - PHP_CodeSniffer\Standards\PEAR\Sniffs\Formatting\MultiLineAssignmentSniff
+    - SlevomatCodingStandard\Sniffs\Namespaces\MultipleUsesPerLineSniff
+    - Symplify\CodingStandard\Fixer\Strict\BlankLineAfterStrictTypesFixer
+    PhpCsFixer\Fixer\CastNotation\CastSpacesFixer:
+         space: none
+    PhpCsFixer\Fixer\ClassNotation\ClassAttributesSeparationFixer:
+         elements: [method]
+    PhpCsFixer\Fixer\Whitespace\NoExtraBlankLinesFixer:
+        tokens:
+            - break
+            - case
+            - continue
+            - curly_brace_block
+            - default
+            - extra
+            - parenthesis_brace_block
+            - return
+            - square_brace_block
+            - switch
+            - throw
+            - use
+            - use_trait
+
+    # comments/annotations/phpdoc
+    - PhpCsFixer\Fixer\Comment\SingleLineCommentStyleFixer
+    - PhpCsFixer\Fixer\Phpdoc\PhpdocAddMissingParamAnnotationFixer
+    - PhpCsFixer\Fixer\Phpdoc\PhpdocOrderFixer
+    - PhpCsFixer\Fixer\Phpdoc\AlignMultilineCommentFixer
+    - PHP_CodeSniffer\Standards\Squiz\Sniffs\Commenting\EmptyCatchCommentSniff
+    PhpCsFixer\Fixer\Phpdoc\GeneralPhpdocAnnotationRemoveFixer:
+        annotations: [package, created, version, copyright, license, throws]
+    - Symplify\CodingStandard\Sniffs\Debug\CommentedOutCodeSniff
+    SlevomatCodingStandard\Sniffs\TypeHints\TypeHintDeclarationSniff:
+        enableEachParameterAndReturnInspection: true
+        usefulAnnotations:
+            - '@depends' #phpunit
+            - '@dataProvider' #phpunit
+            - '@ParamConverter' #symfony extra
+            - '@required' #symfony di
+            - '@author' #general
+            - '@IsGranted' #symfony security
+            - '@JMS' #serializer
+
+    # @DoctrineAnnotation
+    - PhpCsFixer\Fixer\DoctrineAnnotation\DoctrineAnnotationArrayAssignmentFixer
+    - PhpCsFixer\Fixer\DoctrineAnnotation\DoctrineAnnotationBracesFixer
+    - PhpCsFixer\Fixer\DoctrineAnnotation\DoctrineAnnotationIndentationFixer
+    - PhpCsFixer\Fixer\DoctrineAnnotation\DoctrineAnnotationSpacesFixer
+
