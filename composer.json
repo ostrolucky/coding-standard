@@ -1,5 +1,5 @@
 {
-    "name": "gadelat/coding-standard",
+    "name": "ostrolucky/coding-standard",
     "require": {
         "symplify/easy-coding-standard": "^3.2.3"
     },
