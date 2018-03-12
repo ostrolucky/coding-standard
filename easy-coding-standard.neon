@@ -96,8 +96,6 @@ checkers:
     # complexity / hard to read code
     PHP_CodeSniffer\Standards\Generic\Sniffs\Metrics\CyclomaticComplexitySniff:
         absoluteComplexity: 10
-    PHP_CodeSniffer\Standards\Generic\Sniffs\Files\LineLengthSniff:
-        absoluteLineLimit: 120
     PHP_CodeSniffer\Standards\Generic\Sniffs\Metrics\NestingLevelSniff:
         absoluteNestingLevel: 4
 
@@ -107,6 +105,9 @@ checkers:
     - PHP_CodeSniffer\Standards\PEAR\Sniffs\Formatting\MultiLineAssignmentSniff
     - SlevomatCodingStandard\Sniffs\Namespaces\MultipleUsesPerLineSniff
     - Symplify\CodingStandard\Fixer\Strict\BlankLineAfterStrictTypesFixer
+    - Symplify\CodingStandard\Fixer\LineLength\BreakMethodArgumentsFixer
+    PHP_CodeSniffer\Standards\Generic\Sniffs\Files\LineLengthSniff:
+        absoluteLineLimit: 120
     PhpCsFixer\Fixer\CastNotation\CastSpacesFixer:
          space: none
     PhpCsFixer\Fixer\ClassNotation\ClassAttributesSeparationFixer:
