@@ -134,6 +134,7 @@ checkers:
     - PhpCsFixer\Fixer\Phpdoc\PhpdocOrderFixer
     - PhpCsFixer\Fixer\Phpdoc\AlignMultilineCommentFixer
     - PHP_CodeSniffer\Standards\Squiz\Sniffs\Commenting\EmptyCatchCommentSniff
+    - Symplify\CodingStandard\Fixer\Commenting\BlockPropertyCommentFixer # this mistake is made by those who use IDE, but not "Initialize fields" feature
     PhpCsFixer\Fixer\Phpdoc\GeneralPhpdocAnnotationRemoveFixer:
         annotations: [package, created, version, copyright, license, throws]
     - Symplify\CodingStandard\Sniffs\Debug\CommentedOutCodeSniff
