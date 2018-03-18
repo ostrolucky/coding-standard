@@ -15,6 +15,7 @@ parameters:
         - PhpCsFixer\Fixer\Phpdoc\PhpdocNoEmptyReturnFixer # -> TypeHintDeclarationSniff.UselessReturnAnnotation
         - PhpCsFixer\Fixer\Phpdoc\PhpdocNoPackageFixer # -> TypeHintDeclarationSniff.UselessDocComment
         - PhpCsFixer\Fixer\FunctionNotation\ReturnTypeDeclarationFixer # -> TypeHintDeclarationSniff.MissingReturnTypeHint
+        - PhpCsFixer\Fixer\Phpdoc\PhpdocToCommentFixer # screws up @psalm-suppress https://github.com/FriendsOfPHP/PHP-CS-Fixer/issues/3611
         # Skipped symfony-risky.neon rules
         - PhpCsFixer\Fixer\Alias\EregToPregFixer # -> Don't need to worry about this in PHP 7
         - PhpCsFixer\Fixer\Alias\NoAliasFunctionsFixer # -> ForbiddenFunctionsSniff
