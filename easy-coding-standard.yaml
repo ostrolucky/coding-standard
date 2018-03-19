@@ -1,6 +1,6 @@
-includes:
-    - vendor/symplify/easy-coding-standard/config/symfony.neon
-    - vendor/symplify/easy-coding-standard/config/symfony-risky.neon
+imports:
+    - { resource: 'vendor/symplify/easy-coding-standard/config/symfony.yml' }
+    - { resource: 'vendor/symplify/easy-coding-standard/config/symfony-risky.neon' }
 
 parameters:
     exclude_checkers:
@@ -20,44 +20,44 @@ parameters:
         - PhpCsFixer\Fixer\Alias\EregToPregFixer # -> Don't need to worry about this in PHP 7
         - PhpCsFixer\Fixer\Alias\NoAliasFunctionsFixer # -> ForbiddenFunctionsSniff
     skip:
+        SlevomatCodingStandard\Sniffs\TypeHints\TypeHintDeclarationSniff.MissingTraversableParameterTypeHintSpecification:
+            - '*src/Form/Type/*Type.php' # no need to define mixed[] for $options all the time
         PhpCsFixer\Fixer\Operator\BinaryOperatorSpacesFixer: # in tests array alignment might be very useful in dataproviders
-            - *tests/*.php
+            - '*tests/*.php'
 
-checkers:
+services:
     # code logic improvements / easy symplifications
-    - PhpCsFixer\Fixer\LanguageConstruct\CombineConsecutiveIssetsFixer
-    - PhpCsFixer\Fixer\ControlStructure\NoSuperfluousElseifFixer
-    - PhpCsFixer\Fixer\FunctionNotation\NoUnreachableDefaultArgumentValueFixer
-    - PhpCsFixer\Fixer\Operator\TernaryToNullCoalescingFixer
-    - PHP_CodeSniffer\Standards\Generic\Sniffs\CodeAnalysis\ForLoopShouldBeWhileLoopSniff
-    - PHP_CodeSniffer\Standards\Generic\Sniffs\CodeAnalysis\ForLoopWithTestFunctionCallSniff
+    PhpCsFixer\Fixer\LanguageConstruct\CombineConsecutiveIssetsFixer:
+    PhpCsFixer\Fixer\ControlStructure\NoSuperfluousElseifFixer:
+    PhpCsFixer\Fixer\FunctionNotation\NoUnreachableDefaultArgumentValueFixer:
+    PhpCsFixer\Fixer\Operator\TernaryToNullCoalescingFixer:
+    PHP_CodeSniffer\Standards\Generic\Sniffs\CodeAnalysis\ForLoopShouldBeWhileLoopSniff:
+    PHP_CodeSniffer\Standards\Generic\Sniffs\CodeAnalysis\ForLoopWithTestFunctionCallSniff:
     PHP_CodeSniffer\Standards\Generic\Sniffs\Strings\UnnecessaryStringConcatSniff:
         allowMultiline: true
-    - PHP_CodeSniffer\Standards\Squiz\Sniffs\Classes\SelfMemberReferenceSniff
-    - PHP_CodeSniffer\Standards\Squiz\Sniffs\Operators\IncrementDecrementUsageSniff
-    - Symplify\CodingStandard\Fixer\Php\ClassStringToClassConstantFixer
-    - SlevomatCodingStandard\Sniffs\Exceptions\ReferenceThrowableOnlySniff
+    PHP_CodeSniffer\Standards\Squiz\Sniffs\Classes\SelfMemberReferenceSniff:
+    PHP_CodeSniffer\Standards\Squiz\Sniffs\Operators\IncrementDecrementUsageSniff:
+    Symplify\CodingStandard\Fixer\Php\ClassStringToClassConstantFixer:
+    SlevomatCodingStandard\Sniffs\Exceptions\ReferenceThrowableOnlySniff:
     PhpCsFixer\Fixer\ControlStructure\YodaStyleFixer:
         equal: false
         identical: false
         less_and_greater: false
 
     # dead code detection
-    - PhpCsFixer\Fixer\ClassNotation\NoNullPropertyInitializationFixer
+    PhpCsFixer\Fixer\ClassNotation\NoNullPropertyInitializationFixer:
     SlevomatCodingStandard\Sniffs\Namespaces\UnusedUsesSniff:
         searchAnnotations: true
-    - SlevomatCodingStandard\Sniffs\Classes\UnusedPrivateElementsSniff
-    - SlevomatCodingStandard\Sniffs\Exceptions\DeadCatchSniff
-    - SlevomatCodingStandard\Sniffs\Namespaces\UseFromSameNamespaceSniff
+    SlevomatCodingStandard\Sniffs\Classes\UnusedPrivateElementsSniff:
+    SlevomatCodingStandard\Sniffs\Exceptions\DeadCatchSniff:
+    SlevomatCodingStandard\Sniffs\Namespaces\UseFromSameNamespaceSniff:
 
     # inconsistency fixes
-    - SlevomatCodingStandard\Sniffs\TypeHints\LongTypeHintsSniff
-    - SlevomatCodingStandard\Sniffs\Namespaces\UseDoesNotStartWithBackslashSniff
-    - Symplify\CodingStandard\Sniffs\Naming\InterfaceNameSniff
-    - Symplify\CodingStandard\Sniffs\Naming\TraitNameSniff
-    - PhpCsFixer\Fixer\Import\OrderedImportsFixer
-    - PhpCsFixer\Fixer\Strict\DeclareStrictTypesFixer
-    - PhpCsFixer\Fixer\Strict\StrictComparisonFixer
+    SlevomatCodingStandard\Sniffs\TypeHints\LongTypeHintsSniff:
+    SlevomatCodingStandard\Sniffs\Namespaces\UseDoesNotStartWithBackslashSniff:
+    PhpCsFixer\Fixer\Import\OrderedImportsFixer:
+    PhpCsFixer\Fixer\Strict\DeclareStrictTypesFixer:
+    PhpCsFixer\Fixer\Strict\StrictComparisonFixer:
     PHP_CodeSniffer\Standards\Generic\Sniffs\PHP\ForbiddenFunctionsSniff:
         forbiddenFunctions:
             chop: rtrim
@@ -101,12 +101,12 @@ checkers:
         absoluteNestingLevel: 4
 
     # whitespaces
-    - PhpCsFixer\Fixer\Whitespace\CompactNullableTypehintFixer
-    - PHP_CodeSniffer\Standards\PEAR\Sniffs\ControlStructures\MultiLineConditionSniff
-    - PHP_CodeSniffer\Standards\PEAR\Sniffs\Formatting\MultiLineAssignmentSniff
-    - SlevomatCodingStandard\Sniffs\Namespaces\MultipleUsesPerLineSniff
-    - Symplify\CodingStandard\Fixer\Strict\BlankLineAfterStrictTypesFixer
-    - Symplify\CodingStandard\Fixer\LineLength\BreakMethodArgumentsFixer
+    PhpCsFixer\Fixer\Whitespace\CompactNullableTypehintFixer:
+    PHP_CodeSniffer\Standards\PEAR\Sniffs\ControlStructures\MultiLineConditionSniff:
+    PHP_CodeSniffer\Standards\PEAR\Sniffs\Formatting\MultiLineAssignmentSniff:
+    SlevomatCodingStandard\Sniffs\Namespaces\MultipleUsesPerLineSniff:
+    Symplify\CodingStandard\Fixer\Strict\BlankLineAfterStrictTypesFixer:
+    Symplify\CodingStandard\Fixer\LineLength\BreakMethodArgumentsFixer:
     PhpCsFixer\Fixer\CastNotation\CastSpacesFixer:
          space: none
     PhpCsFixer\Fixer\ClassNotation\ClassAttributesSeparationFixer:
@@ -128,29 +128,28 @@ checkers:
             - use_trait
 
     # comments/annotations/phpdoc
-    - PhpCsFixer\Fixer\Comment\SingleLineCommentStyleFixer
-    - PhpCsFixer\Fixer\Phpdoc\PhpdocAddMissingParamAnnotationFixer
-    - PhpCsFixer\Fixer\Phpdoc\PhpdocOrderFixer
-    - PhpCsFixer\Fixer\Phpdoc\AlignMultilineCommentFixer
-    - PHP_CodeSniffer\Standards\Squiz\Sniffs\Commenting\EmptyCatchCommentSniff
-    - Symplify\CodingStandard\Fixer\Commenting\BlockPropertyCommentFixer # this mistake is made by those who use IDE, but not "Initialize fields" feature
+    PhpCsFixer\Fixer\Comment\SingleLineCommentStyleFixer:
+    PhpCsFixer\Fixer\Phpdoc\PhpdocAddMissingParamAnnotationFixer:
+    PhpCsFixer\Fixer\Phpdoc\PhpdocOrderFixer:
+    PhpCsFixer\Fixer\Phpdoc\AlignMultilineCommentFixer:
+    PHP_CodeSniffer\Standards\Squiz\Sniffs\Commenting\EmptyCatchCommentSniff:
+    Symplify\CodingStandard\Fixer\Commenting\BlockPropertyCommentFixer:
     PhpCsFixer\Fixer\Phpdoc\GeneralPhpdocAnnotationRemoveFixer:
         annotations: [package, created, version, copyright, license, throws]
-    - Symplify\CodingStandard\Sniffs\Debug\CommentedOutCodeSniff
+    Symplify\CodingStandard\Sniffs\Debug\CommentedOutCodeSniff:
     SlevomatCodingStandard\Sniffs\TypeHints\TypeHintDeclarationSniff:
         enableEachParameterAndReturnInspection: true
         usefulAnnotations:
-            - '@depends' #phpunit
-            - '@dataProvider' #phpunit
-            - '@ParamConverter' #symfony extra
-            - '@required' #symfony di
-            - '@author' #general
-            - '@IsGranted' #symfony security
-            - '@JMS' #serializer
+            - '@depends' #phpunit:
+            - '@dataProvider' #phpunit:
+            - '@ParamConverter' #symfony extra:
+            - '@required' #symfony di:
+            - '@author' #general:
+            - '@IsGranted' #symfony security:
+            - '@JMS\' #serializer:
 
     # @DoctrineAnnotation
-    - PhpCsFixer\Fixer\DoctrineAnnotation\DoctrineAnnotationArrayAssignmentFixer
-    - PhpCsFixer\Fixer\DoctrineAnnotation\DoctrineAnnotationBracesFixer
-    - PhpCsFixer\Fixer\DoctrineAnnotation\DoctrineAnnotationIndentationFixer
-    - PhpCsFixer\Fixer\DoctrineAnnotation\DoctrineAnnotationSpacesFixer
-
+    PhpCsFixer\Fixer\DoctrineAnnotation\DoctrineAnnotationArrayAssignmentFixer:
+    PhpCsFixer\Fixer\DoctrineAnnotation\DoctrineAnnotationBracesFixer:
+    PhpCsFixer\Fixer\DoctrineAnnotation\DoctrineAnnotationIndentationFixer:
+    PhpCsFixer\Fixer\DoctrineAnnotation\DoctrineAnnotationSpacesFixer:

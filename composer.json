@@ -1,8 +1,5 @@
 {
     "name": "ostrolucky/coding-standard",
-    "require": {
-        "symplify/easy-coding-standard": "^3.2.3"
-    },
     "license": "MIT",
     "authors": [
         {
@@ -10,6 +7,9 @@
             "email": "gadelat@gmail.com"
         }
     ],
+    "conflict": {
+        "symplify/easy-coding-standard": "<4.0"
+    },
     "minimum-stability": "dev",
     "prefer-stable": true,
     "config": {
