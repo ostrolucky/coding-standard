@@ -140,13 +140,13 @@ services:
     SlevomatCodingStandard\Sniffs\TypeHints\TypeHintDeclarationSniff:
         enableEachParameterAndReturnInspection: true
         usefulAnnotations:
-            - '@depends' #phpunit:
-            - '@dataProvider' #phpunit:
-            - '@ParamConverter' #symfony extra:
-            - '@required' #symfony di:
-            - '@author' #general:
-            - '@IsGranted' #symfony security:
-            - '@JMS\' #serializer:
+            - '@depends' #phpunit
+            - '@dataProvider' #phpunit
+            - '@ParamConverter' #symfony extra
+            - '@required' #symfony di
+            - '@author' #general
+            - '@IsGranted' #symfony security
+            - '@JMS\' #serializer
 
     # @DoctrineAnnotation
     PhpCsFixer\Fixer\DoctrineAnnotation\DoctrineAnnotationArrayAssignmentFixer:
