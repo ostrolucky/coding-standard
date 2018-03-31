@@ -106,7 +106,7 @@ services:
     PHP_CodeSniffer\Standards\PEAR\Sniffs\Formatting\MultiLineAssignmentSniff:
     SlevomatCodingStandard\Sniffs\Namespaces\MultipleUsesPerLineSniff:
     Symplify\CodingStandard\Fixer\Strict\BlankLineAfterStrictTypesFixer:
-    Symplify\CodingStandard\Fixer\LineLength\BreakMethodArgumentsFixer:
+    Symplify\CodingStandard\Fixer\LineLength\LineLengthFixer:
     PhpCsFixer\Fixer\CastNotation\CastSpacesFixer:
          space: none
     PhpCsFixer\Fixer\ClassNotation\ClassAttributesSeparationFixer:
