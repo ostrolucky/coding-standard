@@ -2,7 +2,7 @@ imports:
     # Import paths when running via jakzal/phpqa docker image
     - { resource: '/root/EasyCodingStandard/config/symfony*' }
     # Alternatively, import when this package is being used directly (eg. during development)
-    - { resource: 'vendor/symplify/easy-coding-standard/config/symfony*' }    
+    - { resource: 'vendor/symplify/easy-coding-standard/config/symfony*' }
 
 parameters:
     skip:
@@ -32,6 +32,8 @@ services:
     PhpCsFixer\Fixer\ControlStructure\NoSuperfluousElseifFixer:
     PhpCsFixer\Fixer\FunctionNotation\NoUnreachableDefaultArgumentValueFixer:
     PhpCsFixer\Fixer\Operator\TernaryToNullCoalescingFixer:
+    SlevomatCodingStandard\Sniffs\ControlStructures\RequireShortTernaryOperatorSniff:
+    SlevomatCodingStandard\Sniffs\ControlStructures\EarlyExitSniff:
     PHP_CodeSniffer\Standards\Generic\Sniffs\CodeAnalysis\ForLoopShouldBeWhileLoopSniff:
     PHP_CodeSniffer\Standards\Generic\Sniffs\CodeAnalysis\ForLoopWithTestFunctionCallSniff:
     PHP_CodeSniffer\Standards\Generic\Sniffs\Strings\UnnecessaryStringConcatSniff:
@@ -54,11 +56,17 @@ services:
     SlevomatCodingStandard\Sniffs\Namespaces\UseFromSameNamespaceSniff:
 
     # inconsistency fixes
-    SlevomatCodingStandard\Sniffs\TypeHints\LongTypeHintsSniff:
-    SlevomatCodingStandard\Sniffs\Namespaces\UseDoesNotStartWithBackslashSniff:
     PhpCsFixer\Fixer\Import\OrderedImportsFixer:
     PhpCsFixer\Fixer\Strict\DeclareStrictTypesFixer:
     PhpCsFixer\Fixer\Strict\StrictComparisonFixer:
+    SlevomatCodingStandard\Sniffs\TypeHints\LongTypeHintsSniff:
+    SlevomatCodingStandard\Sniffs\Namespaces\UseDoesNotStartWithBackslashSniff:
+    SlevomatCodingStandard\Sniffs\Namespaces\ReferenceUsedNamesOnlySniff:
+        searchAnnotations: true
+        allowFullyQualifiedNameForCollidingClasses: true # class Foo extends \Vendor\Foo
+        allowFullyQualifiedGlobalClasses: true
+        allowFullyQualifiedGlobalFunctions: true
+        allowFullyQualifiedGlobalConstants: true
     PHP_CodeSniffer\Standards\Generic\Sniffs\PHP\ForbiddenFunctionsSniff:
         forbiddenFunctions:
             chop: rtrim
@@ -140,14 +148,7 @@ services:
     Symplify\CodingStandard\Sniffs\Debug\CommentedOutCodeSniff:
     SlevomatCodingStandard\Sniffs\TypeHints\TypeHintDeclarationSniff:
         enableEachParameterAndReturnInspection: true
-        usefulAnnotations:
-            - '@depends' #phpunit
-            - '@dataProvider' #phpunit
-            - '@ParamConverter' #symfony extra
-            - '@required' #symfony di
-            - '@author' #general
-            - '@IsGranted' #symfony security
-            - '@JMS\' #serializer
+        allAnnotationsAreUseful: true
 
     # @DoctrineAnnotation
     PhpCsFixer\Fixer\DoctrineAnnotation\DoctrineAnnotationArrayAssignmentFixer:
