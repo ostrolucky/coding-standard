@@ -116,10 +116,12 @@ services:
     SlevomatCodingStandard\Sniffs\Namespaces\MultipleUsesPerLineSniff:
     Symplify\CodingStandard\Fixer\Strict\BlankLineAfterStrictTypesFixer:
     Symplify\CodingStandard\Fixer\LineLength\LineLengthFixer:
+    PhpCsFixer\Fixer\Semicolon\MultilineWhitespaceBeforeSemicolonsFixer:
+        strategy: new_line_for_chained_calls
     PhpCsFixer\Fixer\CastNotation\CastSpacesFixer:
-         space: none
+        space: none
     PhpCsFixer\Fixer\ClassNotation\ClassAttributesSeparationFixer:
-         elements: [method]
+        elements: [method]
     PhpCsFixer\Fixer\Whitespace\NoExtraBlankLinesFixer:
         tokens:
             - break
