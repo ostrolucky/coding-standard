@@ -10,11 +10,14 @@
     "conflict": {
         "symplify/easy-coding-standard": "<4.0",
         "slevomat/coding-standard": "<4.5.3",
-        "vimeo/psalm": "<1.0.4"
+        "vimeo/psalm": "<1.1.2"
     },
     "minimum-stability": "dev",
     "prefer-stable": true,
     "config": {
         "sort-packages": true
+    },
+    "require-dev": {
+        "vimeo/psalm": "dev-master"
     }
 }

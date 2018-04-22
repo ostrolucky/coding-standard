@@ -1,8 +1,11 @@
 <?xml version="1.0"?>
 <psalm
+    xsi:schemaLocation="https://getpsalm.org/schema/config vendor/vimeo/psalm/config.xsd"
+    xmlns="https://getpsalm.org/schema/config"
     totallyTyped="false"
     allowPhpStormGenerics="true"
     allowStringToStandInForClass="false"
+    usePhpDocMethodsWithoutMagicCall="true"
 >
     <projectFiles>
         <directory name="src" />
