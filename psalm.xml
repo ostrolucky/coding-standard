@@ -70,7 +70,7 @@
         <MissingClosureReturnType errorLevel="suppress" /> <!-- Closures are generally small enough to not be a problem. Psalm is good in inferring return types there and doing this every time would be annoying -->
         <MissingConstructor errorLevel="suppress" /> <!-- Why am I forced to specify useless constructor in each class? -->
         <UnresolvableInclude errorLevel="suppress" /> <!-- So? If you can't resolve it because it's dynamic, don't scream -->
-        <PossiblyNullOperand errorLevel="suppress" /> <!-- This prevents concatenating string|null - I'm not going to explicitly convert null t empty string each time. -->
+        <PossiblyNullOperand errorLevel="suppress" /> <!-- This prevents concatenating string|null - I'm not going to explicitly convert null to empty string each time. -->
         <ImplicitToStringCast errorLevel="suppress" /> <!-- Come on, this is 90% of reason why using __toString() -->
 
         <!--
