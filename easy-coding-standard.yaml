@@ -9,9 +9,6 @@ parameters:
         # Skipped symfony.neon rules
         - PhpCsFixer\Fixer\Phpdoc\PhpdocAlignFixer # harder looking diffs
         - PhpCsFixer\Fixer\Phpdoc\PhpdocSummaryFixer # I don't want summary being forced upon me. Sometime there is no need for it, I just want to explain what are the options for.
-        - PhpCsFixer\Fixer\ClassNotation\MethodSeparationFixer # -> ClassAttributesSeparationFixer
-        - PhpCsFixer\Fixer\Whitespace\NoExtraConsecutiveBlankLinesFixer # -> NoExtraBlankLinesFixer
-        - PhpCsFixer\Fixer\Alias\NoMixedEchoPrintFixer # -> ForbiddenFunctionsSniff
         - PhpCsFixer\Fixer\ControlStructure\NoTrailingCommaInListCallFixer # -> ListSyntaxFixer
         - PhpCsFixer\Fixer\Phpdoc\PhpdocNoAccessFixer # -> TypeHintDeclarationSniff.UselessDocComment
         - PhpCsFixer\Fixer\Phpdoc\PhpdocNoEmptyReturnFixer # -> TypeHintDeclarationSniff.UselessReturnAnnotation
