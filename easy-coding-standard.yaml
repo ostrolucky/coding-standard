@@ -9,12 +9,12 @@ parameters:
         # Skipped symfony.neon rules
         - PhpCsFixer\Fixer\Phpdoc\PhpdocAlignFixer # harder looking diffs
         - PhpCsFixer\Fixer\Phpdoc\PhpdocSummaryFixer # I don't want summary being forced upon me. Sometime there is no need for it, I just want to explain what are the options for.
-        - PhpCsFixer\Fixer\ControlStructure\NoTrailingCommaInListCallFixer # -> ListSyntaxFixer
-        - PhpCsFixer\Fixer\Phpdoc\PhpdocNoAccessFixer # -> TypeHintDeclarationSniff.UselessDocComment
-        - PhpCsFixer\Fixer\Phpdoc\PhpdocNoEmptyReturnFixer # -> TypeHintDeclarationSniff.UselessReturnAnnotation
-        - PhpCsFixer\Fixer\Phpdoc\PhpdocNoPackageFixer # -> TypeHintDeclarationSniff.UselessDocComment
         - PhpCsFixer\Fixer\FunctionNotation\ReturnTypeDeclarationFixer # -> TypeHintDeclarationSniff.MissingReturnTypeHint
         - PhpCsFixer\Fixer\Phpdoc\PhpdocToCommentFixer # screws up @psalm-suppress https://github.com/FriendsOfPHP/PHP-CS-Fixer/issues/3611
+        - PhpCsFixer\Fixer\Phpdoc\PhpdocNoEmptyReturnFixer # -> TypeHintDeclarationSniff.UselessReturnAnnotation
+          # See https://github.com/FriendsOfPHP/PHP-CS-Fixer/issues/3391 for reason why are these not deprecated
+        - PhpCsFixer\Fixer\Phpdoc\PhpdocNoAccessFixer # -> GeneralPhpdocAnnotationRemoveFixer
+        - PhpCsFixer\Fixer\Phpdoc\PhpdocNoPackageFixer # -> GeneralPhpdocAnnotationRemoveFixer
         # Skipped symfony-risky.neon rules
         - PhpCsFixer\Fixer\Alias\EregToPregFixer # -> Don't need to worry about this in PHP 7
         - PhpCsFixer\Fixer\Alias\NoAliasFunctionsFixer # -> ForbiddenFunctionsSniff
@@ -44,6 +44,7 @@ services:
         equal: false
         identical: false
         less_and_greater: false
+    Symplify\CodingStandard\Sniffs\CleanCode\CognitiveComplexitySniff:
 
     # dead code detection
     PhpCsFixer\Fixer\ClassNotation\NoNullPropertyInitializationFixer:
@@ -52,6 +53,7 @@ services:
     SlevomatCodingStandard\Sniffs\Classes\UnusedPrivateElementsSniff:
     SlevomatCodingStandard\Sniffs\Exceptions\DeadCatchSniff:
     SlevomatCodingStandard\Sniffs\Namespaces\UseFromSameNamespaceSniff:
+    Symplify\CodingStandard\Sniffs\Debug\DebugFunctionCallSniff:
 
     # inconsistency fixes
     PhpCsFixer\Fixer\Import\OrderedImportsFixer:
@@ -100,12 +102,11 @@ services:
         syntax: short
     PhpCsFixer\Fixer\ListNotation\ListSyntaxFixer:
         syntax: short
-
-    # complexity / hard to read code
-    PHP_CodeSniffer\Standards\Generic\Sniffs\Metrics\CyclomaticComplexitySniff:
-        absoluteComplexity: 10
-    PHP_CodeSniffer\Standards\Generic\Sniffs\Metrics\NestingLevelSniff:
-        absoluteNestingLevel: 4
+    Symplify\CodingStandard\Fixer\Naming\MagicMethodsNamingFixer:
+    Symplify\CodingStandard\Fixer\Property\ArrayPropertyDefaultValueFixer:
+    Symplify\CodingStandard\Sniffs\Naming\AbstractClassNameSniff:
+    Symplify\CodingStandard\Sniffs\Naming\InterfaceNameSniff:
+    Symplify\CodingStandard\Sniffs\Naming\TraitNameSniff:
 
     # whitespaces
     PhpCsFixer\Fixer\Whitespace\CompactNullableTypehintFixer:
@@ -144,8 +145,11 @@ services:
     PHP_CodeSniffer\Standards\Squiz\Sniffs\Commenting\EmptyCatchCommentSniff:
     Symplify\CodingStandard\Fixer\Commenting\BlockPropertyCommentFixer:
     PhpCsFixer\Fixer\Phpdoc\GeneralPhpdocAnnotationRemoveFixer:
-        annotations: [package, created, version, copyright, license, throws]
+        annotations: [access, package, created, version, copyright, license, throws]
     Symplify\CodingStandard\Sniffs\Debug\CommentedOutCodeSniff:
+    Symplify\CodingStandard\Fixer\Commenting\RemoveEmptyDocBlockFixer:
+    Symplify\CodingStandard\Fixer\Commenting\RemoveSuperfluousDocBlockWhitespaceFixer:
+    Symplify\CodingStandard\Fixer\ControlStructure\RequireFollowedByAbsolutePathFixer:
     SlevomatCodingStandard\Sniffs\TypeHints\TypeHintDeclarationSniff:
         enableEachParameterAndReturnInspection: true
         allAnnotationsAreUseful: true
