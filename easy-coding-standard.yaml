@@ -153,6 +153,15 @@ services:
     SlevomatCodingStandard\Sniffs\TypeHints\TypeHintDeclarationSniff:
         enableEachParameterAndReturnInspection: true
         allAnnotationsAreUseful: true
+    SlevomatCodingStandard\Sniffs\Commenting\ForbiddenCommentsSniff:
+        forbiddenCommentPatterns:
+            - '~^(?:(?!private|protected|static)\S+ )?(?:con|de)structor\.\z~i'
+            - '~^Created by \S+\.\z~i'
+            - '~^\S+ [gs]etter\.\z~i'
+            - '~^User: .+$~'
+            - '~^Date: .+$~'
+            - '~^Time: .+$~'
+            - '~^Class \w+$~'
 
     # @DoctrineAnnotation
     PhpCsFixer\Fixer\DoctrineAnnotation\DoctrineAnnotationArrayAssignmentFixer:
