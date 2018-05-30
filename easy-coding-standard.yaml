@@ -147,7 +147,6 @@ services:
     PhpCsFixer\Fixer\Phpdoc\GeneralPhpdocAnnotationRemoveFixer:
         annotations: [access, package, created, version, copyright, license, throws]
     Symplify\CodingStandard\Sniffs\Debug\CommentedOutCodeSniff:
-    Symplify\CodingStandard\Fixer\Commenting\RemoveEmptyDocBlockFixer:
     Symplify\CodingStandard\Fixer\Commenting\RemoveSuperfluousDocBlockWhitespaceFixer:
     Symplify\CodingStandard\Fixer\ControlStructure\RequireFollowedByAbsolutePathFixer:
     SlevomatCodingStandard\Sniffs\TypeHints\TypeHintDeclarationSniff:
