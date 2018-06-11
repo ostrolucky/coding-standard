@@ -150,6 +150,8 @@ services:
     Symplify\CodingStandard\Fixer\Commenting\RemoveSuperfluousDocBlockWhitespaceFixer:
     Symplify\CodingStandard\Fixer\ControlStructure\RequireFollowedByAbsolutePathFixer:
     SlevomatCodingStandard\Sniffs\TypeHints\TypeHintDeclarationSniff:
+        traversableTypeHints:
+            - Doctrine\Common\Collections\Collection
         enableEachParameterAndReturnInspection: true
         allAnnotationsAreUseful: true
     SlevomatCodingStandard\Sniffs\Commenting\ForbiddenCommentsSniff:
