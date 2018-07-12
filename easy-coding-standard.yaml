@@ -20,7 +20,7 @@ parameters:
         - PhpCsFixer\Fixer\Alias\NoAliasFunctionsFixer # -> ForbiddenFunctionsSniff
     skip:
         SlevomatCodingStandard\Sniffs\TypeHints\TypeHintDeclarationSniff.MissingTraversableParameterTypeHintSpecification:
-            - '*src/Form/Type/*Type.php' # no need to define mixed[] for $options all the time
+            - 'src/Form/Type/*Type.php' # no need to define mixed[] for $options all the time
         PhpCsFixer\Fixer\Operator\BinaryOperatorSpacesFixer: # in tests array alignment might be very useful in dataproviders
             - '*tests/*.php'
 
