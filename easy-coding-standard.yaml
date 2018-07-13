@@ -139,13 +139,14 @@ services:
 
     # comments/annotations/phpdoc
     PhpCsFixer\Fixer\Comment\SingleLineCommentStyleFixer:
-    PhpCsFixer\Fixer\Phpdoc\PhpdocAddMissingParamAnnotationFixer:
-    PhpCsFixer\Fixer\Phpdoc\PhpdocOrderFixer:
     PhpCsFixer\Fixer\Phpdoc\AlignMultilineCommentFixer:
+    PhpCsFixer\Fixer\Phpdoc\GeneralPhpdocAnnotationRemoveFixer:
+        annotations: [access, package, created, version, copyright, license, throws, abstract]
+    PhpCsFixer\Fixer\Phpdoc\PhpdocAddMissingParamAnnotationFixer:
+    PhpCsFixer\Fixer\Phpdoc\PhpdocTrimConsecutiveBlankLineSeparationFixer:
+    PhpCsFixer\Fixer\Phpdoc\PhpdocOrderFixer:
     PHP_CodeSniffer\Standards\Squiz\Sniffs\Commenting\EmptyCatchCommentSniff:
     Symplify\CodingStandard\Fixer\Commenting\BlockPropertyCommentFixer:
-    PhpCsFixer\Fixer\Phpdoc\GeneralPhpdocAnnotationRemoveFixer:
-        annotations: [access, package, created, version, copyright, license, throws]
     Symplify\CodingStandard\Sniffs\Debug\CommentedOutCodeSniff:
     Symplify\CodingStandard\Fixer\Commenting\RemoveSuperfluousDocBlockWhitespaceFixer:
     Symplify\CodingStandard\Fixer\ControlStructure\RequireFollowedByAbsolutePathFixer:
