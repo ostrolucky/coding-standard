@@ -121,6 +121,7 @@ services:
         space: none
     PhpCsFixer\Fixer\ClassNotation\ClassAttributesSeparationFixer:
         elements: [method]
+    PhpCsFixer\Fixer\Whitespace\ArrayIndentationFixer:
     PhpCsFixer\Fixer\Whitespace\NoExtraBlankLinesFixer:
         tokens:
             - break
