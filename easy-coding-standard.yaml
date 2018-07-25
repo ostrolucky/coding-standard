@@ -85,9 +85,8 @@ services:
             mt_rand: random_int
             ini_alter: set
             is_double: float
-            is_integer: int
-            is_long: int
-            is_real: float
+            is_integer: is_int
+            is_real: is_float
             is_writeable: writable
             join: implode
             key_exists: exists
