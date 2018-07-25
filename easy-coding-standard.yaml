@@ -1,6 +1,6 @@
 imports:
     # Import paths when running via jakzal/phpqa docker image
-    - { resource: '/root/EasyCodingStandard/config/symfony*', ignore_errors: true }
+    - { resource: '/tools/EasyCodingStandard/config/symfony*', ignore_errors: true }
     # Alternatively, import when this package is being used directly (eg. during development)
     - { resource: 'vendor/symplify/easy-coding-standard/config/symfony*', ignore_errors: true }
 
