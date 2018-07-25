@@ -163,8 +163,8 @@ services:
             - '~^\S+ [gs]etter\.\z~i'
             - '~^User: .+$~'
             - '~^Date: .+$~'
-            - '~^Time: .+$~'
-            - '~^Class \w+$~'
+            - '~^(User|Date|Time|Class): .+$~'
+            - '~^(Get|Set|Add|Remove) \w+(\.?)$~'
 
     # @DoctrineAnnotation
     PhpCsFixer\Fixer\DoctrineAnnotation\DoctrineAnnotationArrayAssignmentFixer:
