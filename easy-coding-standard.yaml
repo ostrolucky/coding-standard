@@ -84,15 +84,14 @@ services:
             imap_scanmailbox: listscan
             mt_rand: random_int
             ini_alter: set
-            is_double: float
+            is_double: is_float
             is_integer: is_int
             is_real: is_float
-            is_writeable: writable
+            is_writeable: is_writable
             join: implode
-            key_exists: exists
+            key_exists: array_key_exists
             magic_quotes_runtime: set_magic_quotes_runtime
             pos: current
-            print: echo
             rand: random_int
             show_source: file
             sizeof: count
