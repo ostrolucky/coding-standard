@@ -74,14 +74,14 @@ services:
             delete: unset
             doubleval: floatval
             fputs: fwrite
-            imap_create: createmailbox
-            imap_fetchtext: body
-            imap_header: headerinfo
-            imap_listmailbox: list
-            imap_listsubscribed: lsub
-            imap_rename: renamemailbox
-            imap_scan: listscan
-            imap_scanmailbox: listscan
+            imap_create: imap_createmailbox
+            imap_body: imap_fetchtext
+            imap_header: imap_headerinfo
+            imap_list: imap_listmailbox 
+            imap_lsub: imap_listsubscribed
+            imap_rename: imap_renamemailbox
+            imap_scan: imap_listscan
+            imap_scanmailbox: imap_listscan
             mt_rand: random_int
             ini_alter: set
             is_double: is_float
