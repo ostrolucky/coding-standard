@@ -9,7 +9,7 @@
     ],
     "conflict": {
         "symplify/easy-coding-standard": "<4.4.2",
-        "slevomat/coding-standard": "<4.5.3",
+        "slevomat/coding-standard": "<4.8",
         "vimeo/psalm": "<1.1.2"
     },
     "minimum-stability": "dev",
