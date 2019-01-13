@@ -58,6 +58,7 @@ services:
 
     # inconsistency fixes
     PhpCsFixer\Fixer\Import\OrderedImportsFixer:
+        imports_order: [class, function, const]
     PhpCsFixer\Fixer\Strict\DeclareStrictTypesFixer:
     PhpCsFixer\Fixer\Strict\StrictComparisonFixer:
     SlevomatCodingStandard\Sniffs\TypeHints\LongTypeHintsSniff:
