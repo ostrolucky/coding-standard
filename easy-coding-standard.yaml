@@ -109,6 +109,8 @@ services:
 
     # whitespaces
     PhpCsFixer\Fixer\Whitespace\CompactNullableTypehintFixer:
+    PHP_CodeSniffer\Standards\Generic\Sniffs\Formatting\SpaceAfterNotSniff:
+        spacing: 0
     PHP_CodeSniffer\Standards\PEAR\Sniffs\ControlStructures\MultiLineConditionSniff:
     PHP_CodeSniffer\Standards\PEAR\Sniffs\Formatting\MultiLineAssignmentSniff:
     SlevomatCodingStandard\Sniffs\Namespaces\MultipleUsesPerLineSniff:
