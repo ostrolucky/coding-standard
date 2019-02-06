@@ -32,6 +32,7 @@ services:
     PhpCsFixer\Fixer\Operator\TernaryToNullCoalescingFixer:
     SlevomatCodingStandard\Sniffs\ControlStructures\RequireShortTernaryOperatorSniff:
     SlevomatCodingStandard\Sniffs\ControlStructures\EarlyExitSniff:
+        ignoreStandaloneIfInScope: true
     PHP_CodeSniffer\Standards\Generic\Sniffs\CodeAnalysis\ForLoopShouldBeWhileLoopSniff:
     PHP_CodeSniffer\Standards\Generic\Sniffs\CodeAnalysis\ForLoopWithTestFunctionCallSniff:
     PHP_CodeSniffer\Standards\Generic\Sniffs\Strings\UnnecessaryStringConcatSniff:
