@@ -6,6 +6,7 @@
     allowPhpStormGenerics="true"
     allowStringToStandInForClass="false"
     usePhpDocMethodsWithoutMagicCall="true"
+    findUnusedCode="true"
 >
     <projectFiles>
         <directory name="src" />
