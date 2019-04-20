@@ -5,20 +5,19 @@ imports:
     - { resource: 'vendor/symplify/easy-coding-standard/config/symfony*', ignore_errors: true }
 
 parameters:
-    exclude_checkers:
-        # Skipped symfony.neon rules
-        - PhpCsFixer\Fixer\Phpdoc\PhpdocAlignFixer # harder looking diffs
-        - PhpCsFixer\Fixer\Phpdoc\PhpdocSummaryFixer # I don't want summary being forced upon me. Sometime there is no need for it, I just want to explain what are the options for.
-        - PhpCsFixer\Fixer\FunctionNotation\ReturnTypeDeclarationFixer # -> TypeHintDeclarationSniff.MissingReturnTypeHint
-        - PhpCsFixer\Fixer\Phpdoc\PhpdocToCommentFixer # screws up @psalm-suppress https://github.com/FriendsOfPHP/PHP-CS-Fixer/issues/3611
-        - PhpCsFixer\Fixer\Phpdoc\PhpdocNoEmptyReturnFixer # -> TypeHintDeclarationSniff.UselessReturnAnnotation
-          # See https://github.com/FriendsOfPHP/PHP-CS-Fixer/issues/3391 for reason why are these not deprecated
-        - PhpCsFixer\Fixer\Phpdoc\PhpdocNoAccessFixer # -> GeneralPhpdocAnnotationRemoveFixer
-        - PhpCsFixer\Fixer\Phpdoc\PhpdocNoPackageFixer # -> GeneralPhpdocAnnotationRemoveFixer
-        # Skipped symfony-risky.neon rules
-        - PhpCsFixer\Fixer\Alias\EregToPregFixer # -> Don't need to worry about this in PHP 7
-        - PhpCsFixer\Fixer\Alias\NoAliasFunctionsFixer # -> ForbiddenFunctionsSniff
     skip:
+        # Skipped symfony.neon rules
+        PhpCsFixer\Fixer\Phpdoc\PhpdocAlignFixer: # harder looking diffs
+        PhpCsFixer\Fixer\Phpdoc\PhpdocSummaryFixer: # I don't want summary being forced upon me. Sometime there is no need for it, I just want to explain what are the options for.
+        PhpCsFixer\Fixer\FunctionNotation\ReturnTypeDeclarationFixer: # -> TypeHintDeclarationSniff.MissingReturnTypeHint
+        PhpCsFixer\Fixer\Phpdoc\PhpdocToCommentFixer: # screws up @psalm-suppress https://github.com/FriendsOfPHP/PHP-CS-Fixer/issues/3611
+        PhpCsFixer\Fixer\Phpdoc\PhpdocNoEmptyReturnFixer: # -> TypeHintDeclarationSniff.UselessReturnAnnotation
+        # See https://github.com/FriendsOfPHP/PHP-CS-Fixer/issues/3391 for reason why are these not deprecated
+        PhpCsFixer\Fixer\Phpdoc\PhpdocNoAccessFixer: # -> GeneralPhpdocAnnotationRemoveFixer
+        PhpCsFixer\Fixer\Phpdoc\PhpdocNoPackageFixer: # -> GeneralPhpdocAnnotationRemoveFixer
+        # Skipped symfony-risky.neon rules
+        PhpCsFixer\Fixer\Alias\EregToPregFixer: # -> Don't need to worry about this in PHP 7
+        PhpCsFixer\Fixer\Alias\NoAliasFunctionsFixer: # -> ForbiddenFunctionsSniff
         SlevomatCodingStandard\Sniffs\TypeHints\TypeHintDeclarationSniff.MissingTraversableParameterTypeHintSpecification:
             - 'src/Form/Type/*Type.php' # no need to define mixed[] for $options all the time
         PhpCsFixer\Fixer\Operator\BinaryOperatorSpacesFixer: # in tests array alignment might be very useful in dataproviders
